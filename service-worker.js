@@ -1,4 +1,4 @@
-const CACHE_NAME = 'mahamezeg-v1';
+const CACHE_NAME = 'mahamezeg-v1.03';
 const APP_SHELL = [
   './',
   './index.html',
@@ -28,10 +28,17 @@ self.addEventListener('activate', event => {
 });
 
 self.addEventListener('fetch', event => {
-  // Never cache weather API responses — stale weather must not be shown as current
   if (new URL(event.request.url).hostname === 'api.open-meteo.com') return;
 
+  // Network-first: always fetch fresh, update cache, fall back to cache if offline.
+  // Cache-first would serve stale files after deployments.
   event.respondWith(
-    caches.match(event.request).then(cached => cached || fetch(event.request))
+    fetch(event.request)
+      .then(response => {
+        const copy = response.clone();
+        caches.open(CACHE_NAME).then(cache => cache.put(event.request, copy));
+        return response;
+      })
+      .catch(() => caches.match(event.request))
   );
 });
