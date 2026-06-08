@@ -113,7 +113,7 @@ async function run() {
   for (const { key, label } of slots) {
     const data = weatherWindows[key];
     if (!data) continue;
-    const phrase = getWeatherPhrase({ temperature: data.temperature, humidity: data.humidity });
+    const phrase = getWeatherPhrase({ temperature: data.temperature, humidity: data.humidity, isNight: key === 'tonight' });
     if (isDebug) console.log(`[debug] ${key} → "${phrase}" (temp=${data.temperature}, hum=${data.humidity})`);
     lines.push({ label, phrase });
   }
