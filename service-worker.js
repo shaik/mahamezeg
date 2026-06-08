@@ -1,4 +1,4 @@
-const CACHE_NAME = 'mahamezeg-v1.03';
+const CACHE_NAME = 'mahamezeg-v1.04';
 const APP_SHELL = [
   './',
   './index.html',

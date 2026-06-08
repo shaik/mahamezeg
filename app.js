@@ -167,27 +167,10 @@ function stopSettingsDemo() {
 }
 
 function setupHiddenSettingsTrigger() {
-  const app = document.getElementById('app');
-  let longPressTimer = null;
-  let startX = 0, startY = 0;
-
-  app.addEventListener('pointerdown', e => {
-    if (e.button !== 0 && e.button !== undefined) return;
-    startX = e.clientX;
-    startY = e.clientY;
-    longPressTimer = setTimeout(() => { longPressTimer = null; openSettings(); }, 600);
-  });
-  const cancelPress = () => { clearTimeout(longPressTimer); longPressTimer = null; };
-  app.addEventListener('pointerup',     cancelPress);
-  app.addEventListener('pointercancel', cancelPress);
-  // Only cancel on meaningful movement (touch always fires tiny pointermove on tap)
-  app.addEventListener('pointermove', e => {
-    if (!longPressTimer) return;
-    const dx = e.clientX - startX;
-    const dy = e.clientY - startY;
-    if (dx * dx + dy * dy > 100) cancelPress(); // 10px radius
-  });
-  app.addEventListener('contextmenu', e => e.preventDefault());
+  // Hebrew clock pattern: tap the main text to open settings.
+  // No long-press — plain click is reliable on all mobile browsers.
+  document.getElementById('forecast').addEventListener('click', openSettings);
+  document.getElementById('version').addEventListener('click', openSettings);
 
   // Close on backdrop click
   document.getElementById('settings').addEventListener('pointerdown', e => {
