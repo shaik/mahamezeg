@@ -1,0 +1,181 @@
+:root {
+  --bg:     #111111;
+  --fg:     #f0f0f0;
+  --muted:  #555555;
+  --error:  #666666;
+  --panel:  #1c1c1c;
+  --border: rgba(255,255,255,0.1);
+}
+
+[data-theme="light"] {
+  --bg:     #f8f8f8;
+  --fg:     #111111;
+  --muted:  #bbbbbb;
+  --error:  #999999;
+  --panel:  #ffffff;
+  --border: rgba(0,0,0,0.1);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  direction: rtl;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Main app ── */
+.app {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  cursor: default;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+
+.forecast {
+  font-size: clamp(2rem, 8vw, 4.5rem);
+  line-height: 1.5;
+  font-weight: 400;
+  text-align: right;
+}
+
+.line { display: block; }
+
+.label {
+  color: var(--muted);
+  font-weight: 300;
+}
+
+.error {
+  font-size: clamp(1.25rem, 5vw, 2.5rem);
+  color: var(--error);
+}
+
+/* ── Settings overlay ── */
+.settings-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 24px;
+}
+
+.settings-overlay.hidden {
+  display: none;
+}
+
+.settings-panel {
+  background: var(--panel);
+  border-radius: 16px;
+  padding: 32px 28px 20px;
+  width: 100%;
+  max-width: 340px;
+  direction: rtl;
+}
+
+.settings-section {
+  margin-bottom: 28px;
+}
+
+.settings-section-label {
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+
+/* Location list */
+.location-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.location-item {
+  display: block;
+  width: 100%;
+  background: none;
+  border: none;
+  color: var(--fg);
+  font-size: 1.05rem;
+  font-family: inherit;
+  padding: 7px 0;
+  text-align: right;
+  cursor: pointer;
+  opacity: 0.3;
+}
+
+.location-item.active {
+  opacity: 1;
+}
+
+/* Theme buttons */
+.theme-row {
+  display: flex;
+  gap: 10px;
+}
+
+.theme-btn {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--fg);
+  font-size: 0.9rem;
+  font-family: inherit;
+  padding: 8px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  opacity: 0.35;
+}
+
+.theme-btn.active {
+  opacity: 1;
+  border-color: var(--fg);
+}
+
+/* Demo button */
+.demo-btn {
+  width: 100%;
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--fg);
+  font-size: 0.9rem;
+  font-family: inherit;
+  padding: 10px 0;
+  border-radius: 8px;
+  cursor: pointer;
+  opacity: 0.5;
+}
+
+.demo-btn.active {
+  opacity: 1;
+  border-color: var(--fg);
+}
+
+/* Close link */
+.settings-close {
+  display: block;
+  width: 100%;
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-family: inherit;
+  padding: 10px 0 4px;
+  cursor: pointer;
+  text-align: center;
+}

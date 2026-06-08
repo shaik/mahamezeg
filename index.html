@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#111111" id="theme-color-meta" />
+  <meta name="description" content="מה המזג? — מזג אוויר בעברית של אנשים" />
+  <title>מה המזג?</title>
+  <!-- Apply saved theme before first paint to avoid flash -->
+  <script>(function(){var t=localStorage.getItem('mhm_theme');if(t){document.documentElement.setAttribute('data-theme',t);var m=document.getElementById('theme-color-meta');if(m)m.setAttribute('content',t==='light'?'#f8f8f8':'#111111');}})()</script>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main id="app" class="app">
+    <div id="forecast" class="forecast" aria-live="polite"></div>
+  </main>
+
+  <div id="settings" class="settings-overlay hidden" role="dialog" aria-label="הגדרות">
+    <div class="settings-panel">
+      <div class="settings-section">
+        <div class="settings-section-label">מיקום</div>
+        <ul id="location-list" class="location-list"></ul>
+      </div>
+      <div class="settings-section">
+        <div class="settings-section-label">מראה</div>
+        <div class="theme-row">
+          <button class="theme-btn" data-theme-btn="dark">כהה</button>
+          <button class="theme-btn" data-theme-btn="light">בהיר</button>
+        </div>
+      </div>
+      <div class="settings-section">
+        <button id="settings-demo-btn" class="demo-btn">הפעל דמו</button>
+      </div>
+      <button id="settings-close" class="settings-close">סגור</button>
+    </div>
+  </div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
