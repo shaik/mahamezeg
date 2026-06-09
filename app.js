@@ -66,7 +66,7 @@ function buildWindows(israelNow) {
 function renderLines(lines) {
   document.getElementById('forecast').innerHTML = lines
     .map(({ label, phrase }) =>
-      `<div class="line"><span class="label">${label}:</span> <span class="phrase">${phrase}</span></div>`
+      `<div class="line">${label} ${phrase}</div>`
     )
     .join('');
 }
